@@ -79,7 +79,7 @@ export default class Counter extends React.Component {
         {/*<button onClick={this.handleAttack} style={{ width: "200px" }}>
           +1
           </-button>*/}
-        <div className="col-6 col-md-3 offset-md-3">
+        <div className="col-6 col-md-3 md-3">
           <img
             style={{
               width: "100%",
