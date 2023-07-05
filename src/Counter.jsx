@@ -5,16 +5,22 @@ export default class Counter extends React.Component {
     // Empty constructur produces an error --> must send props and call super(props)
     super(props);
     // In constructor we will define state, state is an object
+    // In React (Class based) - State is IMMUTABLE - WE CANNOT MODIFY IT DIRECTLY
+    this.handleAttack = this.handleAttack.bind(this); // BIND 'this' with this.handleAttack
+    this.handleDefence = this.handleDefence.bind(this); // BIND 'this' with this.handleDefence
     this.state = {
       count: 0,
     };
   }
   handleAttack() {
-    alert("Attack clicked");
+    // alert("Attack clicked");
+    // this.state.count = 1; // EROR - STATE IS IMMUTIBLE - WE CANNOT MODIFY IT DIRECTLY
+    this.setState({ count: this.state.count + 1 }); // if 'this' of line 17 is not binded with this of onClick={this.handleAttack}, --> This 'this' is undifiened --> Error
   }
 
   handleDefence() {
-    alert("Defend clicked");
+    // alert("Defend clicked");
+    this.setState({ count: this.state.count - 1 }); // if 'this' of line 17 is not binded with this of onClick={this.handleDefence}, --> This 'this' is undifiened --> Error
   }
 
   render() {
