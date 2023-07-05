@@ -1,4 +1,6 @@
 import React from "react";
+import attack from "./images/attack.png";
+import defend from "./images/defend.png";
 
 export default class Counter extends React.Component {
   constructor(props) {
@@ -57,14 +59,46 @@ export default class Counter extends React.Component {
 
   render() {
     return (
-      <div className="row text-white">
-        <h1>Counter: {this.state.count} </h1>
-        <button onClick={this.handleAttack} style={{ width: "200px" }}>
+      <div className="row text-white text-center">
+        <h1>Game Score: {this.state.count} </h1>
+        <p>You win at +10 points and lose at -10 points!</p>
+        <p>Last Play: </p>
+        <h3>Game Status : </h3>
+        <div className="col-6 col-md-3 offset-md-3">
+          <img
+            style={{
+              width: "100%",
+              cursor: "pointer",
+              border: "1px solid green",
+            }}
+            className="p-4 rounded"
+            src={attack}
+            onClick={this.handleAttack}
+          />
+        </div>
+        {/*<button onClick={this.handleAttack} style={{ width: "200px" }}>
           +1
-        </button>
-        <button onClick={this.handleDefence} style={{ width: "200px" }}>
+          </-button>*/}
+        <div className="col-6 col-md-3 offset-md-3">
+          <img
+            style={{
+              width: "100%",
+              cursor: "pointer",
+              border: "1px solid red",
+            }}
+            className="p-4 rounded"
+            src={defend}
+            onClick={this.handleDefence}
+          />
+        </div>
+        {/*<button onClick={this.handleDefence} style={{ width: "200px" }}>
           -1
-        </button>
+          </button>*/}
+        <div className="col-12 col-md-4 offset-md-4">
+          <button className="btn btn-secondary w-100 mt-2">Random Play</button>
+          <br />
+          <button className="btn btn-warning w-100 mt-2">Reset</button>
+        </div>
       </div>
     );
   }
