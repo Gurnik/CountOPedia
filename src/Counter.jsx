@@ -15,12 +15,44 @@ export default class Counter extends React.Component {
   handleAttack() {
     // alert("Attack clicked");
     // this.state.count = 1; // EROR - STATE IS IMMUTIBLE - WE CANNOT MODIFY IT DIRECTLY
-    this.setState({ count: this.state.count + 1 }); // if 'this' of line 17 is not binded with this of onClick={this.handleAttack}, --> This 'this' is undifiened --> Error
+    // this.setState() - is Async Method
+    // this.setState({ count: this.state.count + 1 }); // if 'this' of line 17 is not binded with this of onClick={this.handleAttack}, --> This 'this' is undifiened --> Error
+
+    // NEW SYNTAX FOR setState
+    this.setState((previousState) => {
+      return {
+        count: previousState.count + 1,
+      };
+    });
+
+    /*
+    // NEW SYNTAX FOR setState
+    this.setState((previousState) => {
+      return {
+        count: previousState.count + 100,
+      };
+    });
+
+    // NEW SYNTAX FOR setState
+    this.setState((previousState) => {
+      return {
+        count: previousState.count + 10,
+      };
+    });
+*/
+    // this.setState({ count: this.state.count + 100 });
+    // this.setState({ count: this.state.count + 10 });
   }
 
   handleDefence() {
     // alert("Defend clicked");
-    this.setState({ count: this.state.count - 1 }); // if 'this' of line 17 is not binded with this of onClick={this.handleDefence}, --> This 'this' is undifiened --> Error
+    // this.setState({ count: this.state.count - 1 }); // if 'this' of line 17 is not binded with this of onClick={this.handleDefence}, --> This 'this' is undifiened --> Error
+    // NEW SYNTAX FOR setState
+    this.setState((previousState) => {
+      return {
+        count: previousState.count - 1,
+      };
+    });
   }
 
   render() {
