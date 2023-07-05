@@ -12,6 +12,8 @@ export default class Counter extends React.Component {
     this.handleDefence = this.handleDefence.bind(this); // BIND 'this' with this.handleDefence
     this.state = {
       count: 0,
+      gameStatus: "",
+      lastPlay: "",
     };
   }
   handleAttack = () => {
@@ -26,6 +28,8 @@ export default class Counter extends React.Component {
 
       return {
         count: newCount,
+        lastPlay: "Attack",
+        gameStatus: newCount > 10 ? "You Won!!" : previousState.gameStatus,
       };
     });
 
@@ -57,6 +61,8 @@ export default class Counter extends React.Component {
 
       return {
         count: newCount,
+        lastPlay: "Defence",
+        gameStatus: newCount < -10 ? "You Lost!!" : previousState.gameStatus,
       };
     });
   };
@@ -74,6 +80,8 @@ export default class Counter extends React.Component {
     this.setState(() => {
       return {
         count: 0,
+        gameStatus: "",
+        lastPlay: "",
       };
     });
   };
@@ -83,8 +91,8 @@ export default class Counter extends React.Component {
       <div className="row text-white text-center">
         <h1>Game Score: {this.state.count} </h1>
         <p>You win at +10 points and lose at -10 points!</p>
-        <p>Last Play: </p>
-        <h3>Game Status : </h3>
+        <p>Last Play: {this.state.lastPlay}</p>
+        <h3>Game Status : {this.state.gameStatus}</h3>
         <div className="col-6 col-md-3 offset-md-3">
           <img
             style={{
