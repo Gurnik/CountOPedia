@@ -14,7 +14,7 @@ export default class Counter extends React.Component {
       count: 0,
     };
   }
-  handleAttack() {
+  handleAttack = () => {
     // alert("Attack clicked");
     // this.state.count = 1; // EROR - STATE IS IMMUTIBLE - WE CANNOT MODIFY IT DIRECTLY
     // this.setState() - is Async Method
@@ -22,8 +22,10 @@ export default class Counter extends React.Component {
 
     // NEW SYNTAX FOR setState
     this.setState((previousState) => {
+      let newCount = previousState.count + Math.round(Math.random() * 10); // random number between 1 and 10
+
       return {
-        count: previousState.count + 1,
+        count: newCount,
       };
     });
 
@@ -44,18 +46,37 @@ export default class Counter extends React.Component {
 */
     // this.setState({ count: this.state.count + 100 });
     // this.setState({ count: this.state.count + 10 });
-  }
+  };
 
-  handleDefence() {
+  handleDefence = () => {
     // alert("Defend clicked");
     // this.setState({ count: this.state.count - 1 }); // if 'this' of line 17 is not binded with this of onClick={this.handleDefence}, --> This 'this' is undifiened --> Error
     // NEW SYNTAX FOR setState
     this.setState((previousState) => {
+      let newCount = previousState.count - Math.round(Math.random() * 10); // random number between 1 and 10
+
       return {
-        count: previousState.count - 1,
+        count: newCount,
       };
     });
-  }
+  };
+
+  handleRandomPlay = () => {
+    let playMode = Math.round(Math.random());
+    if (playMode == 0) {
+      this.handleAttack();
+    } else {
+      this.handleDefence();
+    }
+  };
+
+  handleReset = () => {
+    this.setState(() => {
+      return {
+        count: 0,
+      };
+    });
+  };
 
   render() {
     return (
@@ -95,9 +116,19 @@ export default class Counter extends React.Component {
           -1
           </button>*/}
         <div className="col-12 col-md-4 offset-md-4">
-          <button className="btn btn-secondary w-100 mt-2">Random Play</button>
+          <button
+            className="btn btn-secondary w-100 mt-2"
+            onClick={this.handleRandomPlay}
+          >
+            Random Play
+          </button>
           <br />
-          <button className="btn btn-warning w-100 mt-2">Reset</button>
+          <button
+            className="btn btn-warning w-100 mt-2"
+            onClick={this.handleReset}
+          >
+            Reset
+          </button>
         </div>
       </div>
     );
